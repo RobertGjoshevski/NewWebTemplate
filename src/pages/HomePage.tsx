@@ -1,23 +1,17 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { SiteHeader } from '@/components/layout/SiteHeader'
+import { SiteFooter } from '@/components/layout/SiteFooter'
+import { HeroSection } from '@/components/home/HeroSection'
+import { GallerySection } from '@/components/home/GallerySection'
 
 export function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <h1 className="text-2xl font-semibold">Welcome</h1>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-muted-foreground">
-            High-performance, SEO-friendly static site. React + Vite + Tailwind +
-            Shadcn + Keystatic.
-          </p>
-          <Button asChild>
-            <a href="/keystatic">Open Keystatic Admin</a>
-          </Button>
-        </CardContent>
-      </Card>
+    <div className="min-h-screen flex flex-col">
+      <SiteHeader />
+      <main className="flex-1">
+        <HeroSection />
+        <GallerySection />
+      </main>
+      <SiteFooter />
     </div>
   )
 }

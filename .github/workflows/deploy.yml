@@ -34,6 +34,14 @@ jobs:
         env:
           # Base path for GitHub Pages (repo name). Must match vite.config base.
           VITE_BASE: /${{ github.event.repository.name }}/
+          # Optional: GitHub OAuth Client ID for admin login. Add repo secret VITE_GITHUB_CLIENT_ID.
+          VITE_GITHUB_CLIENT_ID: ${{ secrets.VITE_GITHUB_CLIENT_ID }}
+
+      - name: Verify base path in build
+        run: |
+          echo "Base path: /${{ github.event.repository.name }}/"
+          echo "Site URL will be: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          grep -q "/${{ github.event.repository.name }}/" dist/index.html || (echo "ERROR: dist/index.html does not contain base path - build may be wrong" && exit 1)
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
