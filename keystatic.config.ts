@@ -1,10 +1,11 @@
 import { config, fields, collection } from '@keystatic/core';
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 export default config({
-  storage: {
-    kind: 'github',
-    repo: 'RobertGjoshevski/NewWebTemplate',
-  },
+  storage: isDevelopment
+    ? { kind: 'local' }
+    : { kind: 'github', repo: 'RobertGjoshevski/NewWebTemplate' },
   collections: {
     posts: collection({
       label: 'Posts',
